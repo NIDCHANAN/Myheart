@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Special Gift</title>
+  <style>
+    body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom right, #ffc1cc, #ff8fa3);
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+    .heart {
+      width: 30px;
+      height: 30px;
+      position: absolute;
+      top: -30px; /* เริ่มจากด้านบนสุด */
+      transform: rotate(-45deg);
+      background: radial-gradient(circle at 30% 30%, #ff2f68, #c2185b);
+      box-shadow: 0 0 10px rgba(255, 0, 102, 0.5);
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: radial-gradient(circle at 30% 30%, #ff2f68, #c2185b);
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -15px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 15px;
+      top: 0;
+    }
+
+    .text {
+      font-size: 2rem;
+      color: white;
+      text-shadow: 2px 2px 5px #c2185b;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    /* Animation for hearts falling */
+    @keyframes fall {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh); /* ให้หัวใจตกลงมาจนสุดหน้าจอ */
+        opacity: 0;
+      }
+    }
+
+    .falling-heart {
+      position: absolute;
+      animation: fall 5s linear infinite;
+    }
+
+    /* สำหรับ div ที่ครอบรูป */
+    .image-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80vw;
+  height: 80vw;
+  max-width: 500px;
+  max-height: 500px;
+  background-image: url('./Image/pngegg.png');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column; /* แนวตั้ง */
+  justify-content: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+  align-items: center;     /* จัดให้อยู่ตรงกลางในแนวนอน */
+}
+
+        /* ปุ่ม Start! */
+        .start-btn {
+      padding: 15px 35px;
+      font-size: 1.5rem;
+      background: linear-gradient(to top left, #ff2f68, #c2185b);
+      color: white;
+      border: none;
+      border-radius: 50px; /* รูปทรงของปุ่ม */
+      box-shadow: 0 4px 15px rgba(255, 0, 102, 0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .start-btn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(255, 0, 102, 0.5); /* ปรับเงาเมื่อ hover */
+    }
+
+    .start-btn:active {
+      transform: translateY(2px); /* การเคลื่อนไหวเล็กน้อยเมื่อคลิก */
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    #mess {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  max-width: 1000px;
+  width: 90%;
+  margin: 40px auto;
+  overflow: hidden;
+  height: 80vh;
+}
+
+.card-image {
+  width: 40%;
+  background-color: #f9f9f9;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.message-card {
+  width: 60%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.card-content {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.text-scrollable {
+  overflow-y: auto;
+  padding-right: 10px;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: #444;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Responsive สำหรับมือถือ */
+@media (max-width: 768px) {
+  #mess {
+    flex-direction: column;
+    height: auto;
+    align-items: center; /* จัดตรงกลางในแนว column */
+  }
+
+  .card-image, .message-card {
+    width: 100%;
+    height: auto;
+  }
+
+  .card-image img {
+    height: auto;
+  }
+}
+.love-button {
+  background-color: #ff6f61; /* สีพื้นหลังปุ่ม */
+  color: white; /* สีข้อความ */
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 20px; /* เพิ่มระยะห่างจากข้อความ */
+}
+
+.love-button:hover {
+  background-color: #ff3e2a; /* สีพื้นหลังปุ่มเมื่อ hover */
+}
+  </style>
+</head>
+<body>
+  <div  id="imgg" class="image-container">
+    <div class="text">เค้ามีอะไร อยากจะบอก</div>
+    <button class="start-btn" onclick="hideimg()">พร้อมยัง ?</button>
+  </div>
+
+  <div id="mess">
+    <div class="card-image">
+      <img src="./Image/we.jpg" >
+    </div>
+    <div class="message-card">
+      <div class="card-content">
+        <div class="text-scrollable">
+          <p>
+            เค้าขอบคุณนะครับ ที่วันนี้เธอกล้ายืนข้าง ๆ เค้า กล้าเลือกเค้าทั้ง ๆ ที่เค้าโคตรห่วยแตก ที่ผ่านมาเค้าไม่ใช่คนดีเลยครับ เค้าโคตรใช้ชีวิตเหลวแหลกเลย สนุก ไปวัน ๆ ที่เธอเคยบอกว่าเค้าเริ่มมาเร็วกว่าเธอ เค้าอยากบอกว่าไม่จริงเลยครับ เค้าไม่ได้เริ่ม เค้าไม่ได้ทำอะไรเพื่อใคร 
+            หรือเพื่อตัวเองเลยสักครั้ง จนวันนี้มีเธอเข้ามา ทุกวันนี้เค้ายังไม่เชื่อตัวเองเลยครับ ว่าความฝันของเค้าเป็นจริงแล้วหรอ? เค้าเคยคิดเล่น ๆ ตอนเด็ก ๆ ว่าถ้ามีเธอแล้วจะเป็นยังไง มันจะดีแค่ไหน ? เค้าเคยคิดหลาย ๆ อย่าง ว่าเค้าจะดูแลเธอให้ดียังไง เค้าจะทำได้จริง ๆ หรือป่าว
+            แต่วันนี้เค้าไม่สัญญาครับ ว่าเค้าจะดูแลเธอให้ดี หรือจะทำหลาย ๆ อย่างเพื่อเธอ แต่เค้าจะทำทุกอย่างให้ดี เท่าที่คน ๆนึงจะทำเพื่อคนนึงได้ วันแรกที่เค้ามองเธอเป็นเจ้าหญิงของเค้ายังไง วันนี้มันยังเป็นภาพเดิม และมันจะเป็นภาพเดิมตลอดไปครับ 
+            ขอบคุณทีวันนั้นดึงเค้ากลับขึ้นมาเป็นเค้าในวันที่แย่ท่ีสุดในชีวิตเค้า ทุกครั้ง ที่เค้ารู้สึกแย่ เค้ามีเธอเสมอเลยครับ ไม่ว่าในฐานะ ไหน เธอไม่เคยทิ้งเค้าเลยสักครั้ง วันนั้นเธออาจจะยังไม่ได้รู้สึกอะไรกับคน ๆ นี้ แต่อยากบอกว่า คน ๆ นี้รู้สึกดีมาตั้งแต่ครั้งนั้นนะครับ
+            ขอบคุณที่ดูแลเค้าอย่างดี แม้เราจะอยู่ไกลกันนะครับ ขอบคุณที่จับมือเค้าในวันที่เค้าไม่เอาอะไรเลย มันอาจจะมีวันแบบนี้อีกหลาย ๆ ครั้งในชีวิตเค้า แต่เค้าอยากให้เธอรู้ไว้ว่า แค่คำพูดเธอ กับแววตาของเธอ มันดึงเข้าขึ้นมาทุกครั้ง มันทำให้เค้าคิดว่า "เธอแม่งเหนื่อยกว่าเค้าตั้งกี้พันเท่า เธอต้องเจออะไรหลาย ๆ อย่างมาตั้งเท่าไหร่ แต่เธอแม่งยังผ่านมาได้เลย เธอเองก็แค่ ผญ ตัวเล็ก ๆ คนนึง แล้วเค้าที่แม่งเกิดทีหลังเธอตั้ง 8 ปี ดันท้อซ่ะแล้ว "
+            คำพูดของเธอ ที่บอกว่า "เค้าไม่เก่ง เค้าไม่เก่งอะไรสักอย่างเลย จัดการตัวเองยังไม่ได้ อย่าหวังว่าจะไปดูแลใครเขาได้" มันโคตรติดในหัวเค้าเลย เวลาที่ทุกครั้งเค้ารู้สึกล้มเหลวในวันนั้น ๆ คำพูดเธอก็ลอยมาทุกที ถ้าเค้ายังจัดการมันไม่ได้ เค้าจะไปดูแลเธอได้ยังไง ถูกมั้ย ? มันเป็นประโยคที่เรียกสติเค้าในทุก ๆ ครั้งเลยนะ และ ยังอยากขอบคุณเธอในอีกหลาย ๆ เรื่อง เธอเป็นผญ ที่แมนมากครับ ไม่เคยเรียกร้องอะไรจากเค้าเลย 
+            แม้แต่คำว่า "ดูแล เอาใจใส่" จนบางทีเค้ายังแอบคิดเลย ว่าเค้าดูแล เอาใจใส่เธอ เพียงพอหรือยัง บางครั้งเค้าอาจจะละเลย หรือมองไม่เหมือนเธอ แต่เค้าอยากให้รู้ไว้ว่า เธอเป็นหนึ่งเดียวในใจเค้านะ เป็นคนที่เค้าอยากใช้ชีวิตด้วยมากที่สุด 
+
+            <span style="color: orange;">และขอโทษที่เค้าเดินกลับไปทวงเธอกลับมาช้าไป ขอโทษที่ผ่านมา แวะไปตั้งหลายที่ ไม่กลับมามองเธอเลย มองมาอีกที ก็มีเรื่องไม่สบายใจทุกครั้ง เหมือนแบบที่เธอบอกว่า "ถ้าไม่มีอะไร เค้าจะไม่ทักมา" แต่นับตั้งแต่วินาทีนี้ไป เค้าจะให้เธออยู่กับเค้า ทุกช่วงเวลาของชีวิตเลยครับ ไม่ว่าจะดี หรือร้าย แต่อาจจะมีร้ายบ่อยหน่อยนะ ขอโทษที่เห็นแก่ตัว เพราะไม่ได้อยากปล่อยมือเธอ และไม่ได้อยากให้เธอปล่อยมือเค้าครับ
+              ขอโทษที่ปล่อยเวลามานานขนาดนี้ ใจเธอต้องบอบช้ำไปเท่าไหร่ ถึงพาสเตอร์เค้าจะไม่ใหญ่พอปิดแผลทั้งหมดของเธอ แต่เค้ามีหลายอันนะ รวม ๆ กันน่าจะปิดแผลเธอได้ทั้งหมด และจะไม่สร้างแผลใหม่ให้เธออีกครับ ขอโทษที่บางครั้ง พูด หรือทำอะไรไม่คิด ขอโทษที่บางครั้งทำแล้ว มาคิดทีหลัง จะพยายามคิดก่อนทำ ใช้สติแก้ปัญหา มากกว่าอารมณ์ครับ</span>
+
+            ที่พิมพ์ ๆ  มาทั้งหมดนี้ยังไม่ถึงครึ่งนึงของความรู้สึกเค้าที่มีกับเธอเลย แต่เพียงแค่ อยากบอกให้เธอรู้ไว้ว่า นับจากวันนี้ คน ๆ นี้จะดูแลเธอให้ดีที่สุดครับ จะเป็นคนที่ดีขึ้น จะเป็นคนที่ดีพอ แต่เธอรอเค้าหน่อยนะ ทุกอย่างมันใช้เวลาครับ เรารู้จักกันมาตั้งแต่เค้าอายุ 10 ปี จนตอนนี้ 25 แล้วครับ อยากให้เธอจับมือเค้าไปอย่างต่ำก็สัก 15 ปี ที่เรารู้จักกันมานะ 
+            เค้าจะดีพอ ให้เธอไม่อายใครครับ อะไรที่เธอเห็นว่ามันไม่ดี เธอสามารถบอกเค้าได้ตลอดเลยนะ เพราะเธอเป็นทุกอย่างของชีวิตเค้าเลยครับ ไม่ว่าจะเป็น เพื่อน แฟน พี่ เป็นแม่ เป็นทุก ๆ  อย่างในชีวิตเค้าเลย เธอคือคนสำคัญของเค้าเสมอครับ 
+
+            ทั้งหมดที่พูดมาเนี้ย อยากบอกว่า <span style="color: green; -webkit-text-stroke: 0.5px black; text-shadow: 1px 1px 2px rgba(0,0,0,0.4);" > "เค้ารักเธอนะครับ" อยากให้เรารักกัน และรักกันมากพอนะ เค้ายังยืนยันคำเดิม ว่า ต่อจากนี้ไป เค้าไม่ให้เธอไปไหนแล้วนะ  </span>จะให้อยู่กับเค้าเป็นหัวใจของเค้าตลอดไปครับ 
+            ส่วนคำถามที่เธอชอบถามเค้าบ่อย ๆ ว่า "เค้าจะเบือเธอไหม ?" เค้าจะตอบตรงนี้ และจะตอบเหมือนเดิมในทุก ๆ ครั้งว่า เค้าจะไม่มีวันเบื่อเธอเลยครับ แต่ถ้าวันไหน เธอเบื่อเค้า บอกเค้านะ แต่เค้าจะไม่ปล่อยมือเธอครับ เราจะมาหาอะไรทำร่วมกันใหม่ ปรับปรุงความสัมพันธ์ของเราให้มันอยู่ด้วยกันได้นาน ๆ และจนลมสุดท้ายของกันและกันไปเลย 
+          </p>
+
+          <button class="love-button" onclick="hidemess()">รักเหมือนกัน</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+      $(document).ready(function () {
+        $('#mess').hide();
+      });
+
+      function hideimg()
+      {
+        $('#mess').show();
+        $('#imgg').hide();
+      }
+
+      function hidemess()
+      {
+        $('#mess').hide();
+        $('#imgg').show();
+      }
+
+
+    // Function to generate falling hearts
+    function generateFallingHearts() {
+      const container = document.body;
+      const heart = document.createElement("div");
+      heart.classList.add("heart", "falling-heart");
+
+      // Randomize the position and timing
+      heart.style.left = `${Math.random() * 100}vw`; // Random horizontal position
+      heart.style.animationDuration = `${Math.random() * 2 + 3}s`; // Random falling duration
+      heart.style.animationDelay = `${Math.random() * 2}s`; // Random delay for each heart
+
+      container.appendChild(heart);
+
+      // After the animation ends, remove the heart element
+      heart.addEventListener('animationend', () => {
+        heart.remove();
+      });
+    }
+
+    // Continuously generate hearts every 500ms
+    setInterval(generateFallingHearts, 500);
+  </script>
+</body>
+</html>
