@@ -6,15 +6,16 @@
   <title>Special Gift</title>
   <style>
     body {
-  margin: 0;
+      margin: 0;
   padding: 0;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(to bottom right, #ffc1cc, #ff8fa3);
   font-family: 'Segoe UI', sans-serif;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+    }
     .heart {
       width: 30px;
       height: 30px;
@@ -72,25 +73,25 @@
 
     /* สำหรับ div ที่ครอบรูป */
     .image-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80vw;
-  height: 80vw;
-  max-width: 500px;
-  max-height: 500px;
-  background-image: url('./Image/pngegg.png');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column; /* แนวตั้ง */
-  justify-content: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
-  align-items: center;     /* จัดให้อยู่ตรงกลางในแนวนอน */
-}
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80vw;
+        height: 80vw;
+        max-width: 500px;
+        max-height: 500px;
+        background-image: url('./Image/pngegg.png');
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column; /* แนวตั้ง */
+        justify-content: center; /* จัดให้อยู่ตรงกลางในแนวตั้ง */
+        align-items: center;     /* จัดให้อยู่ตรงกลางในแนวนอน */
+      }
 
         /* ปุ่ม Start! */
-        .start-btn {
+    .start-btn {
       padding: 15px 35px;
       font-size: 1.5rem;
       background: linear-gradient(to top left, #ff2f68, #c2185b);
@@ -180,6 +181,12 @@
   .card-image img {
     height: auto;
   }
+
+  .text-scrollable {
+    max-height: none;
+    overflow-y: visible;
+  }
+
 }
 .love-button {
   background-color: #ff6f61; /* สีพื้นหลังปุ่ม */
